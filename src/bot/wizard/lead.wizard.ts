@@ -65,7 +65,7 @@ export class LeadWizard {
   }
 
   @On('text')
-  @WizardStep(5)
+  @WizardStep(6)
   async onCountry(
     @Ctx() ctx: WizardContext,
     @Message() msg: { text: string },

@@ -1,9 +1,7 @@
-export POSTGRES_USER=user
+export POSTGRES_USER=leads_manager_bot
 export POSTGRES_PASSWORD=password
-export POSTGRES_DB=nestjs
+export POSTGRES_DB=leads_manager_bot
 export POSTGRES_HOST=localhost
 export POSTGRES_PORT=5432
-export PORT=3000
 export DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
-export APP_SECRET=APP_SECRET
-export ALLOWED_ORIGINS=http://localhost:3000
+export TELEGRAM_BOT_TOKEN=5945241130:AAGuOAY_2E9Z_cxjyIC7w4j7ks0ODZpoDS4

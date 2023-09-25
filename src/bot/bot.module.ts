@@ -1,13 +1,17 @@
 import { Module } from '@nestjs/common';
+import { TelegrafModule } from 'nestjs-telegraf';
 
 import { BotUpdate } from './bot.update';
 import { LeadWizard } from './wizard/lead.wizard';
-import { LeadsService } from '../leads/leads.service';
 import { LeadsModule } from '../leads/leads.module';
-import { LeadCreate } from 'src/leads/dto/create-lead.dto';
 
 @Module({
-  imports: [LeadsModule],
-  providers: [BotUpdate, LeadWizard, LeadsService, LeadCreate],
+  imports: [
+    TelegrafModule.forRoot({
+      token: process.env.TELEGRAM_BOT_TOKEN,
+    }),
+    LeadsModule,
+  ],
+  providers: [BotUpdate, LeadWizard],
 })
 export class BotModule {}

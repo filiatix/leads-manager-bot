@@ -3,6 +3,7 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  AfterInsert,
 } from 'typeorm';
 
 @Entity()
@@ -27,4 +28,10 @@ export class Lead {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @AfterInsert()
+  createMessages() {
+    console.log('Lead created. Create messages for this lead.');
+    //TODO: Create messages for this lead.
+  }
 }

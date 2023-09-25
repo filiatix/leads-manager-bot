@@ -11,6 +11,7 @@ export class BotUpdate {
 
   @Command('addLead')
   async onWizardCommand(@Ctx() ctx: Context): Promise<void> {
+    console.log('context scene', ctx.scene);
     await ctx.scene.enter(ADD_LEAD_WIZARD_SCENE_ID);
   }
 }

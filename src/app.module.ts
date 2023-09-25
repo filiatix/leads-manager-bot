@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { dataSourceOptions } from './data-source';
@@ -9,6 +10,7 @@ import { MessagesModule } from './messages/messages.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({ ...dataSourceOptions, autoLoadEntities: true }),
     BotModule,
     UsersModule,
