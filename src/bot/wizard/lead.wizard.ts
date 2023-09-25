@@ -17,7 +17,7 @@ export class LeadWizard {
   async onSceneEnter(@Ctx() ctx: WizardContext): Promise<string> {
     console.log('Enter to scene');
     await ctx.wizard.next();
-    return 'Welcome to add lead wizard ✋ Enter lead email';
+    return 'Welcome to adding lead wizard ✋ Enter lead email';
   }
 
   @On('text')
