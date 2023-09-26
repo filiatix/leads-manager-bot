@@ -22,6 +22,6 @@ export class Message {
   @JoinColumn()
   lead: Lead;
 
-  @Column()
+  @Column({ default: false })
   isSent: boolean;
 }

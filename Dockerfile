@@ -20,15 +20,13 @@ RUN npm prune --omit=dev
 
 FROM gcr.io/distroless/nodejs:18 AS app
 
-ARG NODE_ENV="production" PORT=3000
+ARG NODE_ENV="production"
 
-ENV NODE_ENV=${NODE_ENV} PORT=${PORT}
+ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /srv/app
 
 COPY --from=dependencies /var/cache/backend/node_modules ./node_modules
 COPY --from=build /var/cache/backend/dist ./
-
-EXPOSE ${PORT}
 
 CMD ["/srv/app/main.js"]

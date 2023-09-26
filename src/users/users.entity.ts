@@ -6,7 +6,7 @@ import {
   OneToMany,
 } from 'typeorm';
 
-import { Message } from './../messages/messages.entity';
+import { Message } from '../messages/messages.entity';
 
 @Entity()
 export class User {
@@ -25,7 +25,7 @@ export class User {
   @CreateDateColumn()
   createdAt: Date;
 
-  @Column()
+  @Column({ nullable: true })
   lastMessageSentAt: Date;
 
   @OneToMany(() => Message, (message) => message.user)

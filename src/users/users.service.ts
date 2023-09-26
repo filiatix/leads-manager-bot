@@ -11,7 +11,11 @@ export class UsersService {
     private readonly repo: Repository<User>,
   ) {}
 
-  createUser(): Promise<User> {
-    return this.repo.save(this.repo.create());
+  createUser(): User {
+    return this.repo.create();
+  }
+
+  async saveUser(user: User): Promise<User> {
+    return await this.repo.save(user);
   }
 }

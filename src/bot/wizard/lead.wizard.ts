@@ -79,8 +79,9 @@ export class LeadWizard {
       return `Lead data validation failed. Errors: ${errors}`;
     }
 
-    await this.leadService.addLead(this.leadCreateData);
+    this.leadService.createLead(this.leadCreateData);
     // TODO: check if lead successfully registered
+    await ctx.wizard.next();
     return 'Lead was successfully registered.';
   }
 }

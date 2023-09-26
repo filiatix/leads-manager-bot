@@ -12,7 +12,8 @@ export class LeadsService {
     private readonly repo: Repository<Lead>,
   ) {}
 
-  addLead(newLead: LeadCreate): Promise<Lead> {
+  createLead(newLead: LeadCreate): Promise<Lead> {
+    console.log(`Create lead: ${JSON.stringify(newLead)}`);
     const lead = this.repo.create(newLead);
     return this.repo.save(lead);
   }
