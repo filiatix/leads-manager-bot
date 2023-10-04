@@ -15,7 +15,6 @@ export class LeadWizard {
 
   @WizardStep(1)
   async onSceneEnter(@Ctx() ctx: WizardContext): Promise<string> {
-    console.log('Enter to scene');
     await ctx.wizard.next();
     return 'Welcome to adding lead wizard ✋ Enter lead email';
   }
@@ -70,18 +69,24 @@ export class LeadWizard {
     @Ctx() ctx: WizardContext,
     @Message() msg: { text: string },
   ): Promise<string> {
-    this.leadCreateData.country = msg.text;
-
+    this.leadCreateData.countryId = msg.text;
     try {
-      validateOrReject(this.leadCreateData);
+      const validateResult = await validateOrReject(this.leadCreateData);
+      console.log('Lead data validation result: ', validateResult);
     } catch (errors) {
       console.log('Lead data validation failed. Errors: ', errors);
+      await ctx.scene.leave();
       return `Lead data validation failed. Errors: ${errors}`;
     }
-
-    this.leadService.createLead(this.leadCreateData);
-    // TODO: check if lead successfully registered
-    await ctx.wizard.next();
+    try {
+      await this.leadService.createLead(this.leadCreateData);
+    } catch (e) {
+      console.log('Lead creation failed. Error: ', e);
+      await ctx.scene.leave();
+      return `Lead creation failed. Error: ${e}`;
+    }
+    console.log('Lead was successfully registered.');
+    await ctx.scene.leave();
     return 'Lead was successfully registered.';
   }
 }

@@ -1,4 +1,4 @@
-import { DataSourceOptions, DataSource } from 'typeorm';
+import { DataSourceOptions } from 'typeorm';
 
 import { Lead } from './leads/leads.entity';
 import { User } from './users/users.entity';
@@ -11,7 +11,6 @@ export const dataSourceOptions: DataSourceOptions = {
   entities: [Lead, User, Message],
   migrations: [Migrations1695734738408],
   synchronize: false,
+  logging: 'all',
   extra: {},
 };
-
-export const appDataSource = new DataSource(dataSourceOptions);

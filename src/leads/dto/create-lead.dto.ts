@@ -6,7 +6,6 @@ import {
   MinLength,
   MaxLength,
   IsEmail,
-  IsPhoneNumber,
   IsISO31661Alpha2,
 } from 'class-validator';
 
@@ -19,7 +18,7 @@ export class LeadCreate {
 
   @IsDefined()
   @IsNotEmpty()
-  @IsPhoneNumber()
+  @IsString()
   phone: string;
 
   @IsDefined()
@@ -39,5 +38,5 @@ export class LeadCreate {
   @IsDefined()
   @IsNotEmpty()
   @IsISO31661Alpha2()
-  country: string;
+  countryId: string;
 }

@@ -11,7 +11,9 @@ import { MessagesModule } from './messages/messages.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    TypeOrmModule.forRoot({ ...dataSourceOptions, autoLoadEntities: true }),
+    TypeOrmModule.forRootAsync({
+      useFactory: () => dataSourceOptions,
+    }),
     BotModule,
     UsersModule,
     LeadsModule,

@@ -10,7 +10,7 @@ export class BotUpdate {
 
   @Start()
   async onStart(@Ctx() ctx: Context) {
-    const user = await this.userService.createUser();
+    const user = this.userService.createUser();
     user.id = ctx.from.id;
     user.firstName = ctx.from.first_name;
     user.lastName = ctx.from.last_name;
@@ -23,7 +23,6 @@ export class BotUpdate {
 
   @Command('createLead')
   async onWizardCommand(@Ctx() ctx: Context): Promise<void> {
-    console.log('context scene', ctx.scene);
     await ctx.scene.enter(ADD_LEAD_WIZARD_SCENE_ID);
   }
 }
