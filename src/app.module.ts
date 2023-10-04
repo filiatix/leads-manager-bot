@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ScheduleModule } from '@nestjs/schedule';
 
 import { dataSourceOptions } from './data-source';
 import { BotModule } from './bot/bot.module';
@@ -14,6 +15,7 @@ import { MessagesModule } from './messages/messages.module';
     TypeOrmModule.forRootAsync({
       useFactory: () => dataSourceOptions,
     }),
+    ScheduleModule.forRoot(),
     BotModule,
     UsersModule,
     LeadsModule,

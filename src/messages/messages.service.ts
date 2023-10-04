@@ -18,4 +18,8 @@ export class MessagesService {
   async saveMessage(message: Message): Promise<Message> {
     return await this.repo.save(message);
   }
+
+  async getMessagesToSend(): Promise<Message[]> {
+    return await this.repo.find({ where: { isSent: false } });
+  }
 }
