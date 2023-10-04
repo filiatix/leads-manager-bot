@@ -3,7 +3,6 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  AfterInsert,
 } from 'typeorm';
 
 @Entity()
@@ -11,10 +10,10 @@ export class Lead {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: false, unique: true })
   email: string;
 
-  @Column()
+  @Column({ nullable: false, unique: true })
   phone: string;
 
   @Column()
@@ -23,15 +22,9 @@ export class Lead {
   @Column()
   lastName: string;
 
-  @Column()
+  @Column({ length: 2 })
   countryId: string;
 
   @CreateDateColumn()
   createdAt: Date;
-
-  @AfterInsert()
-  createMessages() {
-    console.log('Lead created. Create messages for this lead.');
-    //TODO: Create messages for this lead.
-  }
 }

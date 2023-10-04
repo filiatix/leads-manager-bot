@@ -6,16 +6,16 @@ import { UsersService } from '../users/users.service';
 
 @Update()
 export class BotUpdate {
-  constructor(private readonly userService: UsersService) {}
+  constructor(private readonly usersService: UsersService) {}
 
   @Start()
   async onStart(@Ctx() ctx: Context) {
-    const user = this.userService.createUser();
+    const user = this.usersService.createUser();
     user.id = ctx.from.id;
     user.firstName = ctx.from.first_name;
     user.lastName = ctx.from.last_name;
     user.username = ctx.from.username;
-    await this.userService.saveUser(user);
+    await this.usersService.saveUser(user);
     await ctx.reply(
       `Welcome ${user.firstName} ${user.lastName}! /createLead to add a new lead.`,
     );
