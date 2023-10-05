@@ -20,6 +20,16 @@ export class MessagesService {
   }
 
   async getMessagesToSend(): Promise<Message[]> {
-    return await this.repo.find({ where: { isSent: false } });
+    // Get 30 messages that have not been sent
+    // and whose user has not sent a message in last second
+    const lastMessageSentAt = Date.now() - 1000;
+    return await this.repo.find({
+      relations: { lead: true, user: true },
+      where: {
+        isSent: false,
+        user: { lastMessageSentAt: lastMessageSentAt },
+      },
+      take: 30,
+    });
   }
 }

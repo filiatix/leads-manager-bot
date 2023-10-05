@@ -3,7 +3,6 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  OneToOne,
   JoinColumn,
 } from 'typeorm';
 
@@ -18,7 +17,7 @@ export class Message {
   @ManyToOne(() => User, (user) => user.messages)
   user: User;
 
-  @OneToOne(() => Lead)
+  @ManyToOne(() => Lead)
   @JoinColumn()
   lead: Lead;
 

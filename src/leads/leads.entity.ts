@@ -3,7 +3,9 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  OneToMany,
 } from 'typeorm';
+import { Message } from '../messages/messages.entity';
 
 @Entity()
 export class Lead {
@@ -24,6 +26,9 @@ export class Lead {
 
   @Column({ length: 2 })
   countryId: string;
+
+  @OneToMany(() => Message, (message) => message.lead)
+  messages: Message[];
 
   @CreateDateColumn()
   createdAt: Date;
