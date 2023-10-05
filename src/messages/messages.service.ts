@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { LessThan, Repository } from 'typeorm';
 
 import { Message } from './messages.entity';
 
@@ -22,12 +22,16 @@ export class MessagesService {
   async getMessagesToSend(): Promise<Message[]> {
     // Get 30 messages that have not been sent
     // and whose user has not sent a message in last second
-    const lastMessageSentAt = Date.now() - 1000;
+    const lastMessageSentAt = new Date();
+    lastMessageSentAt.setSeconds(lastMessageSentAt.getSeconds() - 1);
     return await this.repo.find({
       relations: { lead: true, user: true },
       where: {
         isSent: false,
-        user: { lastMessageSentAt: lastMessageSentAt },
+        // user: [
+        //   { lastMessageSentAt: LessThan(lastMessageSentAt) },
+        //   { lastMessageSentAt: null },
+        // ],
       },
       take: 30,
     });

@@ -32,9 +32,9 @@ export class BotUpdate {
   }
 
   @Cron(CronExpression.EVERY_30_SECONDS)
-  handleDailyCron() {
+  async handleCron() {
     console.log('Called cron');
-    const messages = this.messagesService.getMessagesToSend();
+    const messages = await this.messagesService.getMessagesToSend();
     console.log(`Messages to send: ${JSON.stringify(messages)}`);
   }
 }
