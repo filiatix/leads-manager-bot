@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { LessThan, Repository } from 'typeorm';
+import { LessThan, Repository, IsNull } from 'typeorm';
 
 import { Message } from './messages.entity';
 
@@ -28,10 +28,10 @@ export class MessagesService {
       relations: { lead: true, user: true },
       where: {
         isSent: false,
-        // user: [
-        //   { lastMessageSentAt: LessThan(lastMessageSentAt) },
-        //   { lastMessageSentAt: null },
-        // ],
+        user: [
+          { lastMessageSentAt: LessThan(lastMessageSentAt) },
+          { lastMessageSentAt: IsNull() },
+        ],
       },
       take: 30,
     });
