@@ -36,4 +36,8 @@ export class MessagesService {
       take: 30,
     });
   }
+
+  async markMessageAsSent(messageId: number): Promise<void> {
+    await this.repo.update({ id: messageId }, { isSent: true });
+  }
 }
