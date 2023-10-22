@@ -30,6 +30,6 @@ export class Lead {
   @OneToMany(() => Message, (message) => message.lead)
   messages: Message[];
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamptz' })
   createdAt: Date;
 }

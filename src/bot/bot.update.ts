@@ -36,13 +36,14 @@ export class BotUpdate {
 
   @Cron(CronExpression.EVERY_30_SECONDS)
   async handleCron() {
-    console.log('Called cron');
     const messages = await this.messagesService.getMessagesToSend();
-    console.log(`Messages to send: ${JSON.stringify(messages)}`);
     messages.forEach(async (message) => {
       const chatId = message.user.id;
-      const text = JSON.stringify(message.lead);
-      this.bot.telegram.sendMessage(chatId, text);
+      const text =
+        `New lead: *${message.lead.email}* ${message.lead.phone} ${message.lead.firstName}` +
+        `${message.lead.lastName} ${message.lead.countryId}` +
+        `created at ${message.lead.createdAt.toTimeString()}`;
+      this.bot.telegram.sendMessage(chatId, text, { parse_mode: 'MarkdownV2' });
       await this.messagesService.markMessageAsSent(message.id);
     });
   }

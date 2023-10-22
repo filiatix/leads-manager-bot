@@ -22,7 +22,7 @@ export class User {
   @Column()
   lastName: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamptz' })
   createdAt: Date;
 
   @Column({ nullable: true })

@@ -6,7 +6,7 @@ import { User } from './users/users.entity';
 import { Message } from './messages/messages.entity';
 import { Migrations1696489702777 } from './migrations/1696489702777-migrations';
 
-export const appDataSource = async (
+export const getAppDataSourceOptions = async (
   configService: ConfigService,
 ): Promise<TypeOrmModuleOptions> => {
   return {

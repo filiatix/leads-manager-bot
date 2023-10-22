@@ -3,7 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ScheduleModule } from '@nestjs/schedule';
 
-import { appDataSource } from './data-source';
+import { getAppDataSourceOptions } from './data-source';
 import { BotModule } from './bot/bot.module';
 import { UsersModule } from './users/users.module';
 import { LeadsModule } from './leads/leads.module';
@@ -16,7 +16,7 @@ import { MessagesModule } from './messages/messages.module';
       inject: [ConfigService],
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) =>
-        await appDataSource(configService),
+        await getAppDataSourceOptions(configService),
     }),
     ScheduleModule.forRoot(),
     BotModule,
