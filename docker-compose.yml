@@ -16,6 +16,7 @@ services:
     depends_on:
       - postgres
     env_file: .env
+    restart: always
 
 volumes:
   postgres-data:

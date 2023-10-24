@@ -40,10 +40,11 @@ export class BotUpdate {
     messages.forEach(async (message) => {
       const chatId = message.user.id;
       const text =
-        `New lead: *${message.lead.email}* ${message.lead.phone} ${message.lead.firstName}` +
-        `${message.lead.lastName} ${message.lead.countryId}` +
-        `created at ${message.lead.createdAt.toTimeString()}`;
-      this.bot.telegram.sendMessage(chatId, text, { parse_mode: 'MarkdownV2' });
+        `New lead: *${message.lead.email}* ${message.lead.phone} ${message.lead.firstName} ` +
+        `${message.lead.lastName} ${message.lead.countryId} ` +
+        `created at ${message.lead.createdAt}`;
+      console.log(text);
+      this.bot.telegram.sendMessage(chatId, text, { parse_mode: 'Markdown' });
       await this.messagesService.markMessageAsSent(message.id);
     });
   }
