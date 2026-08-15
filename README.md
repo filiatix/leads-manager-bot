@@ -1,3 +1,11 @@
+> [!WARNING]
+> **Status: unused as of 2026-08-15 — candidate for archive.**
+> This NestJS/PostgreSQL Telegram lead-capture bot is **not deployed anywhere** in the
+> Filiatix estate: it appears in no swarm stack (see `DOCKER_SERVICES_MAP.md` in the docs
+> workspace), and the platform runs no PostgreSQL. The production Telegram functionality
+> (report pivots, ops alerts, affiliate notifications) lives in `leads-market-backend`
+> (`TelegramController`, `telegramOpsAlert`). See the repo-archival proposal issue.
+
 # Leads Manager Bot
 
 A NestJS-powered Telegram bot for capturing leads via a conversational wizard and broadcasting new-lead notifications to all registered users. It uses TypeORM with PostgreSQL for persistence and Telegraf (via `nestjs-telegraf`) for the Telegram integration.
